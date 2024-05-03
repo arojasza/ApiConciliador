@@ -1,0 +1,21 @@
+<section id="error">
+    <div class="container-fluid ">
+      <div class="row auth-height full-height-vh">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h1 class="mt-4">404 - ¡Página no encontrada!</h1>
+              <div class="w-75 error-text mx-auto mt-4">
+                <p>La página que intentas acceder tal vez ha sido removida, el nombre ha cambiado, o está temporalmente no disponible</p>
+              </div>
+              @if (isAuth) {
+                <a (click)="onRedirect()" class="btn btn-warning my-2">Volver atras</a>
+              } @else {
+                <a (click)="navigateToInit()" class="btn btn-warning my-2">Ir a inicio</a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
