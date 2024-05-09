@@ -1,0 +1,16 @@
+.center-items .p-menuitem {
+    text-align: center;
+  }
+
+  .menu-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+  }
+  
+  .menu-item {
+    margin-right: 10px; /* Ajusta el espaciado entre elementos si es necesario */
+  }
+  .p-menubar .p-menuitem-link {
+    text-decoration: none !important;
+  }

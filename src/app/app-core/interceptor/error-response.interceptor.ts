@@ -35,7 +35,7 @@ function handleErrorResponse(error: HttpErrorResponse, req: HttpRequest<any>) {
     else {
       messageServiceCustom.showError(
         'Error',
-        'Algo salió mal editando el Area'
+        'Algo salió mal'
       );
     }
   }

@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { share } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { UsuarioCreation, UsuarioEntidad } from '../modules/app/login/interfaces/login-form.interface';
-import { MessageResponse } from '../shared/interfaces/response.interfaces';
+import { Injectable} from '@angular/core';
+import { UsuarioCreation, UsuarioEntidad } from '../interfaces/login-form.interface';
+import { Observable, share } from 'rxjs';
+import { MessageResponse } from '../../../../shared/interfaces/response.interfaces';
+import { environment } from '../../../../../environments/environment';
 
+const base_url = environment.baseUrl;
+declare const gapi: any;
 @Injectable({
   providedIn: 'root',
 })
@@ -40,6 +41,12 @@ export class LoginService {
 
   delete(idAreas: number): Observable<MessageResponse> {
     return this.http.delete<MessageResponse>(`${this.apiUrl}Delete/${idAreas}`).pipe(share());
+  }
+
+  logout() {
+    // Eliminar el usuario del sessionStorage al cerrar sesión
+    sessionStorage.removeItem('usuario');
+    console.log('Usuario eliminado del sessionStorage');
   }
 
 }
