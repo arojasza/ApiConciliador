@@ -1,8 +1,28 @@
-<p-menubar [model]="itemsMenu">
+<p-menubar [model]="itemsMenu" class="custom-menubar">
     <ng-template pTemplate="start">
-        <img src="./assets/Images/Grupo_KFC.png" height="40" class="mr-2" />
+        <img src="./assets/Images/Grupo_KFC.png" height="60" class="mr-2" />
+    </ng-template>
+    <ng-template pTemplate="item" let-item>
+        <pre>{{item.route}}</pre>
+        <ng-container>
+            <a [routerLink]="[item.routerLink]" routerLinkActive="active" class="p-menuitem-link" style="text-decoration: none"
+                styleClass="kfc-menuitem">
+                @if(item.icon){
+                    <span [class]="item.icon" class="icon-wrapper"></span>
+                }
+                <span class="ml-2 p-menuitem">{{ item.label }}</span>
+            </a>
+        </ng-container>
     </ng-template>
     <ng-template pTemplate="end">
-        <input type="text" pInputText placeholder="Buscar" class="w-full" />
-      </ng-template>
+
+        <a class="bw-text-link" href="javascript:void(0);" (click)="ConfirmCerrarSesion()">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-sign-out-alt icon-wrapper"></i>
+                <span class="hide-on-small-screen">Cerrar Sesión</span>
+            </div>
+        </a>
+
+    </ng-template>
 </p-menubar>
+<p-confirmDialog></p-confirmDialog>

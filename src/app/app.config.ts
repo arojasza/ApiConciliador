@@ -1,4 +1,4 @@
-import { ApplicationConfig } from "@angular/core";
+import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { routes } from "./app.routes";
 import { provideClientHydration } from "@angular/platform-browser";
@@ -7,10 +7,12 @@ import { ErrorResponseInterceptor } from "./app-core/interceptor/error-response.
 import { MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG, MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration, MsalService } from "@azure/msal-angular";
 import { environment } from "../environments/environment";
 import { BrowserCacheLocation, IPublicClientApplication, InteractionType, LogLevel, PublicClientApplication } from "@azure/msal-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    importProvidersFrom(BrowserAnimationsModule),
     provideRouter(routes),
     provideHttpClient(withInterceptors([]), withFetch()),
     {

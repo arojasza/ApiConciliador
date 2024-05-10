@@ -1,16 +1,73 @@
 .center-items .p-menuitem {
-    text-align: center;
-  }
+  text-align: center;
+}
 
-  .menu-container {
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+.menu-container {
+  display: flex;
+  justify-content: center;
+  /* Centrar horizontalmente */
+  align-items: center;
+  /* Centrar verticalmente */
+}
+
+.menu-item {
+  margin-right: 10px;
+  /* Ajusta el espaciado entre elementos si es necesario */
+}
+
+.p-menubar .p-menuitem-link {
+  text-decoration: none !important;
+}
+
+/* Estilos personalizados para el menú */
+.custom-menubar {
+  background-color: #333;
+  /* Cambia el color de fondo del menú */
+  color: #fff;
+  /* Cambia el color del texto en el menú */
+}
+
+@media screen and (max-width: 768px) {
+  .hide-on-small-screen {
+    display: none;
   }
-  
-  .menu-item {
-    margin-right: 10px; /* Ajusta el espaciado entre elementos si es necesario */
-  }
-  .p-menubar .p-menuitem-link {
-    text-decoration: none !important;
-  }
+}
+
+.custom-menubar .p-menuitem {
+  color: #333;
+  font-weight: bold;
+}
+
+.kfc-menuitem {
+  /* KFC brand color palette */
+  background-color: #EA0029;
+  /* Cherry Red */
+  color: #FFFFFF;
+  /* White */
+  padding: 10px 15px;
+  /* Example padding */
+  border-radius: 5px;
+  /* Example rounded corners */
+  text-decoration: none;
+  /* Remove underline */
+}
+
+.kfc-menuitem:hover {
+  background-color: #F44336;
+  /* Darker Cherry Red on hover */
+}
+
+.icon-wrapper {
+  display: inline-block;
+  border-radius: 50%;
+  background-color: #F44336;
+  padding: 10px;
+  margin-right: 5px;
+  /* Ajusta el tamaño del círculo según el contenido */
+  width: 40px; /* Cambia según sea necesario */
+  height: 40px; /* Cambia según sea necesario */
+  /* Centra el contenido dentro del círculo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

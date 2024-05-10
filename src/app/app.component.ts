@@ -6,13 +6,14 @@ import { EventMessage, EventType, InteractionStatus, RedirectRequest } from '@az
 import { Subject, filter, takeUntil } from 'rxjs';
 import { MenuModule } from 'primeng/menu';
 import { NavbarComponent } from './layout/navbar/navbar.component';
+import { HeaderComponent } from './layout/header/header.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, MsalModule, RouterOutlet, RouterLink, MenuModule, NavbarComponent, CommonModule],
+  imports: [CommonModule, MsalModule, RouterOutlet, RouterLink, MenuModule, NavbarComponent, HeaderComponent, CommonModule],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
@@ -132,23 +133,15 @@ export class AppComponent implements OnInit, OnDestroy {
         items: [{
           label: 'Niveles de Acceso',
           icon: 'fas fa-user-check',
-          command: () => this.router.navigate(['/nivel-acceso'])
+          routerLink: '/niveles-acceso',
         },
         {
           label: 'Usuarios',
           icon: 'fas fa-user',
-          command: () => this.router.navigate(['/usuarios'])
+          routerLink: '/modulos/usuarios',
         }
         ]
       },
-      {
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [
-          { label: 'Delete', icon: 'pi pi-fw pi-trash' },
-          { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
-        ]
-      }
     ];;
   }
 
