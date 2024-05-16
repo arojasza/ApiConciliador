@@ -1,0 +1,30 @@
+<div class="flex flex-row flex-wrap">
+  <div class="flex col-12 align-items-center justify-content-start" style="padding: 0px">
+    <span class="bw-subtitle bw-font-size-app-name" style="font-size: 32px">{{
+      viewTitle
+      }}</span>
+  </div>
+</div>
+<hr class="hr" />
+<p class="bw-font-size-app-parrafo">
+  {{viewDescription}}
+</p>
+
+<p-confirmDialog #cd>
+  <ng-template pTemplate="headless" let-message>
+    <div class="flex flex-column align-items-center p-5 surface-overlay border-round">
+      <div class="inline-flex justify-content-center align-items-center ">
+        <i class="pi pi-exclamation-triangle text-7xl bg-color-orange"></i>
+      </div>
+      <span class="font-bold text-2xl block mb-2 mt-4 bw-text-blue">{{
+        message.header
+        }}</span>
+      <p class="mb-0">{{ message.message }}</p>
+      <div class="flex align-items-center gap-2 mt-4">
+        <p-button label="No, Cancelar" [outlined]="true" class="bw-color-blue w-10rem bw-color-blue" (click)="cd.reject()"
+          severity="info"></p-button>
+        <p-button label="Si, Eliminar" class="w-10rem bw-color-blue" (onClick)="cd.accept()"></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>

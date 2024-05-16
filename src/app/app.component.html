@@ -1,14 +1,26 @@
-<div class="epm-row justify-content-center">
-    <div [ngClass]="nameUser ? 'col-1' : '' " style="padding: 0;">
-        <app-navbar [itemsMenu]="items"></app-navbar>
+<div class="row">
+
+    <div class="col-md-3 col-sm-5 col-2">
+        @if(loginDisplay){
+        <app-navbar></app-navbar>
+        }
     </div>
-        <div [ngClass]="nameUser ? 'epm-col-11' : 'epm-col-12'">
-               <div style="display: flex;">
-                   <main  class="container-fluid main-container py-0">
-                       <div>
-                           <router-outlet></router-outlet>
-                       </div>
-                   </main>
-               </div>
-           </div>
+
+    <div class="col-md-8 col-sm-7 col-10" st>
+        <div  style="padding: inherit;width: auto;overflow: hidden">
+            <main class=" container-fluid main-container" style="padding: 25px 0;height: 100%;">
+                @if(loginDisplay){
+                <p-breadcrumb class="max-w-full" styleClass="border-none " [model]="items" [style]="{
+                          'background-color': 'transparent'
+                        }"></p-breadcrumb>
+                }
+
+                <router-outlet></router-outlet>
+
+            </main>
+
+        </div>
+
+    </div>
+    <app-footer></app-footer>
 </div>

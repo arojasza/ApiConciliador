@@ -8,9 +8,9 @@ export const environment = {
   },
   apiConfig: {
     scopes: ['openid profile email'],
-    uri: 'http://localhost:4200/'
+    uri: 'https://graph.microsoft.com/v1.0/me'
   },
   adminRole: "ADMIN",
   appName: 'Banco W',
-  baseUrl: 'https://localhost:7244/api/',
+  baseUrl: 'https://localhost:44348/',
 };

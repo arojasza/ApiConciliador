@@ -1,7 +1,7 @@
-@import "assets/sass/variables";
+
 
 .bw-text-link {
-    color: $kfc-color-gray;
+    color: #404040;
     font-weight: bold;
     text-decoration: none;
   
@@ -9,3 +9,28 @@
       text-decoration: underline;
     }
   }
+
+  .main-container {
+    padding-top: 20px;
+    width: 98%;
+    padding-bottom: 20px;
+  }
+  
+
+
+  .border-none {
+    border: none;
+    text-decoration: none;
+}
+
+p-button, button {
+  box-shadow: none;
+}
+p-button.p-stepper-action :focus, p-button.p-stepper-action :hover, button.p-stepper-action :focus, button.p-stepper-action :hover {
+  background-color: transparent;
+}
+
+
+tbody > tr > td {
+  padding: 0.5rem;
+}

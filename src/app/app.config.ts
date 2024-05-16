@@ -67,11 +67,12 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: environment.msalConfig.auth.clientId,
       authority: environment.msalConfig.auth.authority,
-      redirectUri: '/',
-      postLogoutRedirectUri: '/'
+      redirectUri: '/panelusuario',
+      postLogoutRedirectUri: '/login'
     },
     cache: {
-      cacheLocation: BrowserCacheLocation.LocalStorage
+      cacheLocation: BrowserCacheLocation.LocalStorage,
+      storeAuthStateInCookie: true, // set to true for IE 11
     },
     system: {
       loggerOptions: {
@@ -79,6 +80,6 @@ export function MSALInstanceFactory(): IPublicClientApplication {
         logLevel: LogLevel.Info,
         piiLoggingEnabled: false
       }
-    }
+    },
   });
 }

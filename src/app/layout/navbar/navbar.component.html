@@ -1,28 +1,39 @@
-<p-menubar [model]="itemsMenu" class="custom-menubar">
-    <ng-template pTemplate="start">
-        <img src="./assets/Images/Grupo_KFC.png" height="60" class="mr-2" />
-    </ng-template>
-    <ng-template pTemplate="item" let-item>
-        <pre>{{item.route}}</pre>
-        <ng-container>
-            <a [routerLink]="[item.routerLink]" routerLinkActive="active" class="p-menuitem-link" style="text-decoration: none"
-                styleClass="kfc-menuitem">
-                @if(item.icon){
-                    <span [class]="item.icon" class="icon-wrapper"></span>
-                }
-                <span class="ml-2 p-menuitem">{{ item.label }}</span>
-            </a>
-        </ng-container>
-    </ng-template>
-    <ng-template pTemplate="end">
-
-        <a class="bw-text-link" href="javascript:void(0);" (click)="ConfirmCerrarSesion()">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-sign-out-alt icon-wrapper"></i>
-                <span class="hide-on-small-screen">Cerrar Sesión</span>
+<div class="container-fluid custom-menubar" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" *ngFor="let item of itemsMenu; index as i;">
+                    <li class="nav-item">
+                        <a class="nav-link align-middle px-0" routerLink="/panelusuario">
+                            <i class="fas fa-house-user"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fas fa-folder-open"></i> <span class="ms-1 d-none d-sm-inline">{{item.label}}</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" *ngFor="let items of item.items; index as i;" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100" >
+                                <a routerLink="{{items.routerLink}}" class="nav-link px-0"> <i class="{{items.icon}}"></i><span class="ms-1 d-none d-sm-inline">{{items.label}}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="d-none d-sm-inline mx-1">Usuario</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" >Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" (click)="ConfirmCerrarSesion()" >Salir</a></li>
+                    </ul>
+                </div>
             </div>
-        </a>
-
-    </ng-template>
-</p-menubar>
+        </div>
+    </div>
+</div>
 <p-confirmDialog></p-confirmDialog>

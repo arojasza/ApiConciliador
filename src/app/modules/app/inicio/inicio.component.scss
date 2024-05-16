@@ -1,0 +1,55 @@
+
+.imagen {
+    width: 20%;
+    height: 20%;
+    max-width: 30%;
+    max-height: 30%;
+    display: block;
+    margin: 0px auto;
+}
+
+@media (hover: hover){
+    .hoverProperty:hover{
+        border: thin solid red;
+        border-radius: 10px;
+        cursor: pointer;
+
+        .titulo-tarjeta {
+            color: #ff6900;
+        }
+
+        .circle-icon {
+            background-color:#d7d7d8;;
+        }
+    }
+}
+
+.circle-icon {
+    display: inline-flex; /* Usa inline-flex para poder centrar */
+    border-radius: 50%;
+    color: black;
+    padding: 10px;
+    margin-right: 5px;
+    /* Ajusta el tamaño del círculo según el contenido */
+    width: 40px; /* Cambia según sea necesario */
+    height: 40px; /* Cambia según sea necesario */
+    /* Centra el contenido dentro del círculo */
+    justify-content: center;
+    align-items: center;
+    background-color:#f0f0f5;;
+}
+
+.icono-tarjeta {
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+[i] {
+    color: #ff6900;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-left: 30px;
+
+}

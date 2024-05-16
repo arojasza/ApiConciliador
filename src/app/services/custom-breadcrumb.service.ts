@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, share } from 'rxjs';
 })
 export class CustomBreadcrumbService {
   private _items: MenuItem[] = [
-    { label: ' Home', routerLink: '/home', icon: '' },
+    { label: 'Inicio', routerLink: '/panelusuario', icon: 'fas fa-house-user' },
   ];
   private _breadcrumbBehaviorSubject!: BehaviorSubject<MenuItem[]>;
 

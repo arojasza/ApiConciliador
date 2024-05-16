@@ -21,16 +21,36 @@
 
 /* Estilos personalizados para el menú */
 .custom-menubar {
+  position: absolute;
+}
+
+
+:host ::ng-deep .p-menu .p-menuitem-link .p-menuitem-text { 
+  color: #000 !important; 
+} 
+:host ::ng-deep .p-menu .p-menuitem-link .p-menuitem-icon { 
+  color: #000 !important; 
+} 
+:host ::ng-deep .p-menu .p-submenu-header{ 
+  color: #000 !important; 
+  background: #0da350 !important; 
+} 
+:host ::ng-deep .p-menu{ 
+  position: absolute;
+  width: 250px; /* Establece el ancho según tus necesidades */
+  height: 100%; /* O establece una altura fija si es necesario */
+  background: #0da350 !important; 
   background-color: #333;
   /* Cambia el color de fondo del menú */
   color: #fff;
   /* Cambia el color del texto en el menú */
-}
-
-@media screen and (max-width: 768px) {
-  .hide-on-small-screen {
-    display: none;
-  }
+} 
+:host ::ng-deep .p-menu .p-menuitem-link:focus,  
+.p-menu .p-menuitem-link:hover{ 
+  background: white !important; 
+} 
+:host ::ng-deep .p-menu .p-menuitem-link:focus{ 
+  box-shadow: 0 0 0 0.1rem white !important; 
 }
 
 .custom-menubar .p-menuitem {
@@ -60,7 +80,8 @@
 .icon-wrapper {
   display: inline-block;
   border-radius: 50%;
-  background-color: #F44336;
+  background-color: #ff3d23;
+  color: black;
   padding: 10px;
   margin-right: 5px;
   /* Ajusta el tamaño del círculo según el contenido */
@@ -71,3 +92,4 @@
   justify-content: center;
   align-items: center;
 }
+

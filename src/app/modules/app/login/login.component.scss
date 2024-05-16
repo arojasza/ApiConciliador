@@ -10,7 +10,6 @@ html,
 .fondo {
   display: flex;
   align-items: center;
-  background-image: linear-gradient(to right, #f12711, #f5af19) !important;
 }
 
 a {
@@ -22,6 +21,13 @@ a:hover {
   color: #5a1118;
 }
 
+.bw-gray-login {
+  background-color: #f8f8f8;
+}
+
+.bw-text-blue {
+  color: #ffffff;;
+}
 /*!
 
  =========================================================
@@ -42,7 +48,6 @@ a:hover {
 }
 body{
 	align-items: center;
-	background-image: linear-gradient( to right, #f12711, #f5af19);
 }
 a{
 	color: #842029;

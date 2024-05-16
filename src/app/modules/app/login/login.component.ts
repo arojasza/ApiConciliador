@@ -1,28 +1,18 @@
-import { HttpClientModule } from '@angular/common/http';
-import { Component} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DividerModule } from 'primeng/divider';
-import { SplitterModule } from 'primeng/splitter';
-import { ImageModule } from 'primeng/image';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { PanelModule } from 'primeng/panel';
-import { CommonModule } from '@angular/common';
 import { UserEntidad } from './interfaces/user.interfaces';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
-import { InputTextModule } from 'primeng/inputtext';
 import { CustomMessageService } from '../../../services/custom-message.service';
 import { LoginService } from './Services/login.service';
 import { ErrorDescription } from '../../../shared/interfaces/api-response.interfaces';
 import { MessageService } from 'primeng/api';
-import { MsalModule } from '@azure/msal-angular';
+import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalModule, MsalService } from '@azure/msal-angular';
+import { environment } from '../../../../environments/environment';
+import { RedirectRequest } from '@azure/msal-browser';
+
 
 @Component({
   selector: 'app-login',
@@ -40,6 +30,7 @@ export class LoginComponent {
   public password: string | undefined;
   public formSubmitted = true;
   public auth2: any;
+  ambiente: boolean = false;
   loading: boolean = false;
 
   public formGroup: FormGroup = this.formBuilder.group({
@@ -52,7 +43,12 @@ export class LoginComponent {
     public _customMessageService: CustomMessageService,
     private usuariosService: LoginService,
     private _messageServiceCustom: CustomMessageService,
-  ) { }
+    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
+    private authService: MsalService,
+  ) {
+
+    this.ambiente = environment.production;
+  }
 
   private get userRequest(): UserEntidad {
     let updateUserRequest: UserEntidad = this.formGroup.value;
@@ -96,5 +92,13 @@ export class LoginComponent {
 
   FieldHasErrors(controlName: string) {
     return this.formGroup.touched && this.formGroup.get(controlName)?.errors;
+  }
+
+  onIngresarClick(){
+    if (this.msalGuardConfig.authRequest) {
+      this.authService.loginRedirect({ ...this.msalGuardConfig.authRequest } as RedirectRequest);
+    } else {
+      this.authService.loginRedirect();
+    }
   }
 }

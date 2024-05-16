@@ -1,0 +1,40 @@
+<main class="container">
+    <section>
+    </section>
+    <section>
+        <div class="col text-center mb-5">
+            <div *ngFor="let item of menuItems">
+                <div class="row">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <!-- Utilizar flexbox para centrar el contenido y alinear verticalmente -->
+                        <hr class="flex-grow-1 m-4">
+                        <!-- Agregar margen en todos los lados con m-2 (puedes ajustar el valor según lo necesites) -->
+                        <h5 class="card-title"> {{ item.label }}</h5>
+                        <hr class="flex-grow-1 m-4">
+                        <!-- Agregar margen en todos los lados con m-2 (puedes ajustar el valor según lo necesites) -->
+                    </div>
+
+
+                </div>
+                <div class="row ">
+                    <div class="col-md-4 col-sm-6" *ngFor="let item of item.items" >
+                        <div class="card hoverProperty shadow p-3 mb-5 bg-white rounded" routerLink="{{item.routerLink}}">
+                            <div class="card-body">
+                                <i class="{{ item.icon }} icono-tarjeta circle-icon"></i>
+                                <h5 class="card-title"> {{ item.label }}</h5>
+                                <p class="card-text">{{ item.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section>
+
+    </section>
+</main>

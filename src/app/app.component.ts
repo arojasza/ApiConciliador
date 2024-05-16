@@ -1,34 +1,48 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalModule, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus, RedirectRequest } from '@azure/msal-browser';
-import { Subject, filter, takeUntil } from 'rxjs';
+import { Observable, Subject, filter, takeUntil } from 'rxjs';
 import { MenuModule } from 'primeng/menu';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { MenuItemsService } from './services/menu-items.service';
+import { MenuItem } from 'primeng/api';
+import { CustomBreadcrumbService } from './services/custom-breadcrumb.service';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { ProfileType } from './shared/interfaces/profileType';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, MsalModule, RouterOutlet, RouterLink, MenuModule, NavbarComponent, HeaderComponent, CommonModule],
+  imports: [BreadcrumbModule, CommonModule, MsalModule, RouterOutlet, RouterLink, MenuModule, NavbarComponent, HeaderComponent, FooterComponent, CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Angular 17 Sample - MSAL Angular v3';
   @ViewChild('miBoton') miBoton!: ElementRef;
-
+  public items!: MenuItem[];
+  public items2!: MenuItem[];
+  private _breadcrumbItems$!: Observable<MenuItem[]>;
   isIframe = false;
   loginDisplay = false;
-  private readonly _destroying$ = new Subject<void>();
+  profile: ProfileType | undefined;
 
+  private readonly _destroying$ = new Subject<void>();
   constructor(
     private router: Router,
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalBroadcastService: MsalBroadcastService,
+    private menuService: MenuItemsService,
+    private _customBreadcrumbService: CustomBreadcrumbService,
+    private http: HttpClient
   ) {
   }
 
@@ -39,7 +53,10 @@ export class AppComponent implements OnInit, OnDestroy {
    * inicio de sesión o cierre de sesión
    */
   ngOnInit(): void {
-
+    this._breadcrumbItems$ = this._customBreadcrumbService.GetBreadcrumb();
+    this._breadcrumbItems$.subscribe({
+      next: (items) => (this.items = [...items]),
+    });
     this.authService.handleRedirectObservable().subscribe();
     this.setLoginDisplay();
 
@@ -65,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.setLoginDisplay();
         this.checkAndSetActiveAccount();
       })
-
+    this.getProfile(environment.apiConfig.uri)
   }
 
 
@@ -125,27 +142,10 @@ export class AppComponent implements OnInit, OnDestroy {
     return '';
   }
 
-  public get items() {
-    return [
-      {
-        label: 'Modulos',
-        escape: true,
-        items: [{
-          label: 'Niveles de Acceso',
-          icon: 'fas fa-user-check',
-          routerLink: '/niveles-acceso',
-        },
-        {
-          label: 'Usuarios',
-          icon: 'fas fa-user',
-          routerLink: '/modulos/usuarios',
-        }
-        ]
-      },
-    ];;
-  }
-
-  someFn() {
-    console.log('hi')
+  getProfile(url: string) {
+    this.http.get(url)
+      .subscribe(profile => {
+        this.profile = profile;
+      });
   }
 }
