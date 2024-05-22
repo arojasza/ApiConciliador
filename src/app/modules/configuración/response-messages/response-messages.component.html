@@ -1,0 +1,36 @@
+<app-view-title class="m-0 p-0"  [viewTitle]="pageTitle" [viewDescription]="viewDescription"></app-view-title>
+
+<p-confirmDialog #cd>
+  <ng-template pTemplate="headless" let-message>
+    <div
+      class="flex flex-column align-items-center p-5 surface-overlay border-round"
+    >
+      <div
+        class="border-circle bg-bw-blue inline-flex justify-content-center align-items-center h-6rem w-6rem -mt-8"
+      >
+        <i class="pi pi-exclamation-triangle text-5xl" style="color: white"></i>
+      </div>
+      <span class="font-bold text-2xl block mb-2 mt-4">{{
+        message.header
+      }}</span>
+      <p class="mb-0">{{ message.message }}</p>
+      <div class="flex align-items-center gap-2 mt-4">
+        <p-button
+          label="Aceptar"
+          class="w-8rem bw-color-blue"
+          (onClick)="cd.accept()"
+        ></p-button>
+        <p-button
+          label="Cancelar"
+          [outlined]="true"
+          class="bw-color-blue w-8rem bw-color-blue"
+          (click)="cd.reject()"
+          severity="info"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-confirmDialog>
+
+<p-breadcrumb styleClass="mt-2" [model]="breadcrumbItems"></p-breadcrumb>
+<router-outlet></router-outlet>

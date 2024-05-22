@@ -1,0 +1,33 @@
+<!-- src/app/components/upload/upload.component.html -->
+<div>
+  <input type="file" (change)="onFileChange($event)" />
+  <div *ngIf="columns.length > 0">
+    <h3>Columnas del archivo:</h3>
+    <ul>
+      <li *ngFor="let column of columns">{{ column }}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="p-fluid">
+  <div>
+    <p-fileUpload 
+      name="file" 
+      customUpload="true" 
+      (uploadHandler)="onFileChange($event)"
+      accept=".xlsx, .xls">
+    </p-fileUpload>
+  </div>
+  
+  <p-fileUpload 
+    mode="basic" 
+    chooseLabel="Choose" 
+    chooseIcon="pi pi-upload"
+    name="demo[]" 
+    url="https://www.primefaces.org/cdn/api/upload.php" 
+    accept=".xlsx, .xls" 
+    maxFileSize="1000000" 
+    (onUpload)="onFileChange($event)" />
+
+</div>
+

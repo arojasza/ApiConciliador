@@ -16,18 +16,20 @@
     </div>
     } @else {
     <div class="formgrid row">
-        <div class="field col-12 col-md-6">
-            <div class="flex flex-column gap-2">
-                <label for="identificacion">Identificacion<span class="bw-span-mandotory">*</span></label>
+        <div class="field col-12 col-md-12 py-2">
+            <div class="d-flex flex-column gap-2">
+                <label for="identificacion" class="font-weight-bold">Identificacion<span class="text-danger">*</span></label>
                 <input formControlName="identificacion" pInputText id="identificacion" aria-describedby="code-help" />
                 @if(FieldHasErrors('identificacion')) {
                 <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
                 }
             </div>
         </div>
-        <div class="field col-12 col-md-6">
-            <div class="flex flex-column gap-2">
-                <label for="nombres">Nombres<span class="bw-span-mandotory">*</span></label>
+    </div>
+    <div class="formgrid row">
+        <div class="field col-12 col-md-12 py-2">
+            <div class="d-flex flex-column gap-2">
+                <label for="nombres" class="font-weight-bold">Nombres<span class="text-danger">*</span></label>
                 <input formControlName="nombres" pInputText id="nombres" aria-describedby="name-help" />
 
                 @if(FieldHasErrors('nombres')) {
@@ -37,9 +39,9 @@
         </div>
     </div>
     <div class="formgrid row">
-        <div class="field col-12 col-md-6">
-            <div class="flex flex-column gap-2">
-                <label for="correo">Correo<span class="bw-span-mandotory">*</span></label>
+        <div class="field col-12 col-md-12">
+            <div class="d-flex flex-column gap-2 py-2">
+                <label for="correo" class="font-weight-bold">Correo<span class="text-danger">*</span></label>
                 <input formControlName="correo" pInputText id="correo" aria-describedby="name-help" />
 
                 @if(FieldHasErrors('correo')) {
@@ -47,75 +49,34 @@
                 }
             </div>
         </div>
-        <div class="field col-12 col-md-6">
-            <div class="flex flex-column gap-2">
-                <label for="rol">Rol<span class="bw-span-mandotory">*</span></label>
-                <input formControlName="rol" pInputText id="rol" aria-describedby="name-help" />
+    </div>
 
-                @if(FieldHasErrors('rol')) {
-                <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
-                }
-            </div>
+    <div class="formgrid row">
+        <div class="field col-12 col-md-12 py-2">
+            <label for="rol" class="font-weight-bold">Rol<span class="text-danger">*</span></label>
+
+            <p-dropdown [style]="{ minWidth: '100%' }" [options]="tipoRoles" formControlName="rol"
+            optionLabel="value" optionValue="optionId" [showClear]="true" placeholder="Seleccionar tipo de base de datos"
+            [class]="FieldHasErrors('rol') ? 'ng-dirty ng-invalid' : ''">
+          </p-dropdown>
+  
+          @if(FieldHasErrors('rol')) {<small id="username-help" class="font-weight-bold text-danger d-flex">Campo
+            obligatorio</small>}
         </div>
     </div>
     <div class="formgrid row">
-        <div class="field col-12 col-md-6">
-            <div class="field col-12 col-md-6">
-                <div class="flex flex-column gap-2">
-                    <label for="estado">Estado<span class="bw-span-mandotory">*</span></label>
-                    <input formControlName="estado" pInputText id="estado" aria-describedby="name-help" />
-    
-                    @if(FieldHasErrors('estado')) {
-                    <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="field col-12 col-md-6">
-            <div class="flex flex-column gap-2">
-                <label for="usuarioCreacionModificacion">Usuario Creacion Modificacion<span class="bw-span-mandotory">*</span></label>
-                <input formControlName="usuarioCreacionModificacion" pInputText id="usuarioCreacionModificacion" aria-describedby="name-help" />
-
-                @if(FieldHasErrors('usuarioCreacionModificacion')) {
-                <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="formgrid row">
-        <div class="field col-12 col-md-6">
-            <div class="field col-12 col-md-6">
-                <div class="flex flex-column gap-2">
-                    <label for="estado">fecha de Conexión<span class="bw-span-mandotory">*</span></label>
-                    <input type="date" value="2024-05-15" formControlName="ultimaConexion" pInputText id="estado" aria-describedby="name-help" />
-    
-                    @if(FieldHasErrors('ultimaConexion')) {
-                    <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="field col-12 col-md-6">
-            <div class="flex flex-column gap-2">
-                <label for="fechaCreacion">fecha de Creación<span class="bw-span-mandotory">*</span></label>
-                <input type="date" value="2024-05-15" formControlName="fechaCreacion" pInputText id="estado" aria-describedby="name-help" />
-
-                @if(FieldHasErrors('fechaCreacion')) {
-                    <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
-                    }
-            </div>
-        </div>
-    </div>
-    <div class="formgrid row">
-        <div class="field col-12 col-md-6">
-            <div class="field col-12 col-md-6">
-                <div class="flex flex-column gap-2">
-                    <label for="fechaActualizacion">fecha de Actualizacion<span class="bw-span-mandotory">*</span></label>
-                    <input type="date" value="2024-05-15" formControlName="fechaActualizacion" pInputText id="estado" aria-describedby="name-help" />
-    
-                    @if(FieldHasErrors('fechaActualizacion')) {
-                    <small id="type-help" class="font-weight-bold text-danger d-flex">Campo requerido</small>
-                    }
+        <div class="field col-12 col-md-12">
+            <label for="estado" class="font-weight-bold">Estado<span class="text-danger">*</span></label>
+            <div class="d-flex flex-column">
+                <div class="d-flex gap-2 py-2">
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="estado" value=1 formControlName="estado" inputId="estado1" [class]="FieldHasErrors('estado') ? 'ng-dirty ng-invalid' : ''"></p-radioButton>
+                        <label for="estado1" >Activo</label>
+                    </div>
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="estado" value=2 formControlName="estado" inputId="estado2" [class]="FieldHasErrors('estado') ? 'ng-dirty ng-invalid' : ''"></p-radioButton>
+                        <label for="estado2">Inactivo</label>
+                    </div>
                 </div>
             </div>
         </div>

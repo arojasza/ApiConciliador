@@ -1,0 +1,6 @@
+
+@if (estado){
+    <p-inputSwitch [(ngModel)]="valor"  [disabled]="true" />
+} @else {
+    <p-chip [label]="GetStatusText()"  [styleClass]="GetStatusClass()"></p-chip>  
+}

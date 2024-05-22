@@ -28,29 +28,47 @@ export class MenuItemsService {
           {
             label: 'Empresa',
             icon: 'fas fa-user',
-            routerLink: '/modulos/usuarios',
-            title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
-          },
-          {
-            label: 'Bancos',
-            icon: 'fas fa-university',
-            routerLink: '/modulos/usuarios',
-            title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
-          },
-          {
-            label: 'Banco Empresa',
-            icon: 'fas fa-piggy-bank',
-            routerLink: '/modulos/usuarios',
+            routerLink: '/modulos/empresa',
             title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
           },
           {
             label: 'Conversión centros costo',
             icon: 'fas fa-search-dollar',
-            routerLink: '/modulos/usuarios',
+            routerLink: '/modulos/conversioncentroscosto',
+            title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
+          },
+          {
+            label: 'Catalogo general',
+            icon: 'fas fa-search-dollar',
+            routerLink: '/modulos/catalogogeneral',
+            title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
+          },
+          {
+            label: 'Catalogo nombre',
+            icon: 'fas fa-search-dollar',
+            routerLink: '/modulos/catalogonombre',
+            title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
+          },
+          {
+            label: 'Catalogo conversión',
+            icon: 'fas fa-search-dollar',
+            routerLink: 'modulos/catalogoconversion',
             title: 'Este apartado te permite crear, editar y eliminar usuarios dentro de la aplicación.'
           }
         ]
+      },
+      {
+        label: 'Configuración',
+        escape: true,
+        items: [
+          {
+            label: 'Configuración de plantilla',
+            icon: 'fa-solid fa-gear',
+            routerLink: 'configuracion/configuracion-plantilla',
+            title: 'Se configuran las plantillas'
+          }
+        ]
       }
-    ];
+    ] 
   }
 }

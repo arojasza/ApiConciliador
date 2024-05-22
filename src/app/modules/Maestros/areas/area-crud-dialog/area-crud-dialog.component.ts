@@ -12,6 +12,10 @@ import { AreasCreation, AreasEntidad } from '../Interfaces/areas.interfaces';
 import { CommonModule } from '@angular/common';
 import { CrudCommand, CrudHandler } from '../../../../shared/interfaces/crud.interfaces';
 import { CustomMessageService } from '../../../../services/custom-message.service';
+import { StatusChipComponent } from '../../../../shared/components/status-chip/status-chip.component';
+import { Dropdown, DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { ListOptionReading } from '../../../../shared/interfaces/list-option.interfaces';
 
 @Component({
   selector: 'app-area-crud-dialog',
@@ -24,12 +28,17 @@ import { CustomMessageService } from '../../../../services/custom-message.servic
     InputSwitchModule,
     DividerModule,
     CommonModule,
+    DropdownModule,
+    RadioButtonModule,
+    StatusChipComponent,
   ],
   providers: [MessageService],
   templateUrl: './area-crud-dialog.component.html',
 })
 export class AreaCrudDialogComponent implements OnInit {
   public command!: CrudCommand<AreasEntidad>;
+  public checked: boolean = false;
+  public tipoRoles: ListOptionReading[]=[];
   private _createReportSubscription!: Subscription;
   public formGroup: FormGroup = this._formBuilder.group({
     id: [0, []],
@@ -37,7 +46,7 @@ export class AreaCrudDialogComponent implements OnInit {
     nombres: ['', [Validators.required]],
     correo: ['', [Validators.required]],
     rol: ['', [Validators.required]],
-    estado: ['', [Validators.required]],
+    estado: [false, [Validators.required]],
     ultimaConexion: ['', [Validators.required]],
     fechaCreacion: ['', [Validators.required]],
     fechaActualizacion: ['', [Validators.required]],
@@ -57,8 +66,8 @@ export class AreaCrudDialogComponent implements OnInit {
   };
 
   public get area() {
-    console.log(this.command.parameters.Nombres)
-    return this.command.parameters.Nombres;
+    console.log(this.command.parameters.nombres)
+    return this.command.parameters.nombres;
 
   }
   constructor(
@@ -110,7 +119,7 @@ export class AreaCrudDialogComponent implements OnInit {
     },
     EDIT: () => {
       if (this.formGroup.valid) {
-        this._createReportSubscription = this.areasService.update(this.rolRequest.Id, this.rolRequest).subscribe({
+        this._createReportSubscription = this.areasService.update(this.rolRequest.id, this.rolRequest).subscribe({
           next: (response) => {
             this.messageServiceCustom.showSuccess(
               'Exitoso',
@@ -131,7 +140,7 @@ export class AreaCrudDialogComponent implements OnInit {
     },
     DELETE: () => {
       if (this.formGroup.valid) {
-        this._createReportSubscription = this.areasService.delete(this.rolRequest.Id).subscribe({
+        this._createReportSubscription = this.areasService.delete(this.rolRequest.id).subscribe({
           next: (response) => {
             this.messageServiceCustom.showSuccess(
               'Exitoso',
@@ -160,6 +169,8 @@ export class AreaCrudDialogComponent implements OnInit {
   ngOnInit(): void {
     this.command = this._dynamicDialogConfig.data as CrudCommand<AreasEntidad> ;
     this.InitCommandHandler[this.command.method](this.command.parameters);
+    this.checked= this.command.parameters.estado === '1' ? true : false;
+    console.log(this.checked)
   }
 
   FieldHasErrors(controlName: string) {            
@@ -171,4 +182,14 @@ export class AreaCrudDialogComponent implements OnInit {
       refreshTable: false,
     });
   }
+
+
+  onCheckboxChange(value: number) {
+    if (value === 1) {
+      this.formGroup.patchValue({ estado: 1 });
+    } else if (value === 2) {
+      this.formGroup.patchValue({ estado: 2 });
+    }
+  }
+
 }

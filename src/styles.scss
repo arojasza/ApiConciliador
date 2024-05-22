@@ -34,3 +34,24 @@ p-button.p-stepper-action :focus, p-button.p-stepper-action :hover, button.p-ste
 tbody > tr > td {
   padding: 0.5rem;
 }
+@media (max-width: 600px) {
+  .responsive-icon-button .p-button-label {
+      display: none;
+  }
+}
+
+.p-field-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.my-custom-table .p-datatable {
+  border: 1px solid #000; /* Cambia el color y el grosor según tus necesidades */
+  border-radius: 4px; /* Opcional: Añade esquinas redondeadas */
+}
+
+
+.font-weight-bold {
+  font-weight: bold !important;
+}

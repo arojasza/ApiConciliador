@@ -1,24 +1,26 @@
 <div class="container-fluid custom-menubar" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" *ngFor="let item of itemsMenu; index as i;">
-                    <li class="nav-item">
-                        <a class="nav-link align-middle px-0" routerLink="/panelusuario">
-                            <i class="fas fa-house-user"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
-                        </a>
-                    </li>
+            <div class="d-flex  flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <ul class="nav nav-pills flex-column mb-0 align-items-center align-items-sm-start" *ngFor="let item of itemsMenu; index as i;">
+                    @if(i == 0){
+                        <li class="nav-item">
+                            <a class="nav-link align-middle px-0" routerLink="/panelusuario" >
+                                <i class="fas fa-house-user text-light"></i> <span class="ms-1 d-none d-sm-inline text-light">Inicio</span>
+                            </a>
+                        </li>
+                    }
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fas fa-folder-open"></i> <span class="ms-1 d-none d-sm-inline">{{item.label}}</span> </a>
+                            <i class="fas fa-folder-open text-light"></i> <span class="ms-1 d-none d-sm-inline text-light">{{item.label}}</span> </a>
                         <ul class="collapse show nav flex-column ms-1" *ngFor="let items of item.items; index as i;" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100" >
-                                <a routerLink="{{items.routerLink}}" class="nav-link px-0"> <i class="{{items.icon}}"></i><span class="ms-1 d-none d-sm-inline">{{items.label}}</span></a>
+                                <a routerLink="{{items.routerLink}}" class="nav-link px-0 "> <i class="{{items.icon}}"></i><span class="ms-1 d-none d-sm-inline text-light">{{items.label}}</span></a>
                             </li>
                         </ul>
                     </li>
                 </ul>
-                <hr>
+                <hr class="mb-sm-auto">
                 <div class="dropdown pb-4">
                     <a  class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user-circle"></i>

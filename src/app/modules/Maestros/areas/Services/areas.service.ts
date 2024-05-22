@@ -20,7 +20,7 @@ export class AreasService {
 
   constructor(private http: HttpClient) {}
 
-  getList(request: PagedRequest): Observable<Paginated<AreasEntidad>> {
+  getList(request?: PagedRequest): Observable<Paginated<AreasEntidad>> {
     return this.http.get<Paginated<AreasEntidad>>(
       `${this.apiUrl}GetUsuarios`
     );

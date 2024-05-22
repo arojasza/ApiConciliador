@@ -19,6 +19,7 @@ import { PagedRequest } from '../../../shared/interfaces/request.interfaces';
 import { CrudCommand } from '../../../shared/interfaces/crud.interfaces';
 import { ViewTitleComponent } from '../../../shared/components/view-title/view-title.component';
 import { CustomBreadcrumbService } from '../../../services/custom-breadcrumb.service';
+import { StatusChipComponent } from '../../../shared/components/status-chip/status-chip.component';
 
 @Component({
   selector: 'app-areas',
@@ -35,7 +36,8 @@ import { CustomBreadcrumbService } from '../../../services/custom-breadcrumb.ser
     FormsModule,
     ButtonModule,
     ToastModule,
-    ConfirmDialogModule,],
+    ConfirmDialogModule,
+    StatusChipComponent],
   templateUrl: './areas.component.html',
   providers: [DialogService, MessageService, CustomMessageService, ConfirmationService],
 })
@@ -117,7 +119,7 @@ export class AreasComponent implements OnInit {
 
     const ref = this.dialogService.open(AreaCrudDialogComponent,
       {
-        header: 'Adicionar registros',
+        header: 'Añadir usuario',
         width: '50vw',
         data,
       });
@@ -137,7 +139,7 @@ export class AreasComponent implements OnInit {
     };
 
     const ref = this.dialogService.open(AreaCrudDialogComponent, {
-      header: 'Editar reporte',
+      header: 'Editar usuario',
       width: '50vw',
       data,
     });
@@ -156,7 +158,7 @@ export class AreasComponent implements OnInit {
     };
 
     const ref =this.dialogService.open(AreaCrudDialogComponent, {
-      header: 'Eliminar Usuario',
+      header: 'Eliminar usuario',
       width: '30vw',
       data,
     });

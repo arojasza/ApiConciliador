@@ -1,0 +1,81 @@
+<div class="w-full pb-4">
+    <!-- <app-remittance-crud-modal></app-remittance-crud-modal> -->
+
+    <div class="w-11 m-auto pt-4">
+      <div class="d-flex justify-content-end mb-3 flex-wrap">
+        <p-button
+          label="Agregar"
+          class="bw-color-blue"
+          icon="pi pi-plus"
+          (onClick)="OpenDialog('CREATE')"
+        ></p-button>
+      </div>
+      <div class="border-round-lg border-2 border-300 mb-4 p-1">
+        <p-table
+          #tblShipments
+          [value]="paginatedRespuestaMensajes.result"
+          styleClass="p-datatable-sm"
+          [paginator]="true"
+          [loading]="loadingDataTable"
+          [lazy]="true"
+          [showCurrentPageReport]="true"
+          [rows]="pagedRequest.rows"
+          [totalRecords]="paginatedRespuestaMensajes.totalCount"
+          [rowsPerPageOptions]="[5, 10, 20]"
+          (onLazyLoad)="PageChange($event)"
+          currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} registros"
+        >
+          <ng-template pTemplate="loadingicon">
+            <i class="pi pi-spin pi-cog" style="font-size: 5rem"></i>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr class="p-datatable-header border-round-md">
+              <th class="font-medium text-white text-center py-3">ID Mensaje</th>
+              <th class="font-medium text-white text-center">
+                Codigo
+              </th>
+              <th class="font-medium text-white text-center py-3">
+                Titulo
+              </th>
+              <th class="font-medium text-white text-center">Causa</th>
+              <th class="font-medium text-white text-center">Solucion</th>
+              <th class="font-medium text-white text-center">Acciones</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-remittance>
+            <tr [pSelectableRow]="remittance">
+              <td class="text-center">{{ remittance.IDMENSAJE }}</td>
+              <td class="text-center">{{ remittance.CODIGO }}</td>
+              <td class="text-center">{{ remittance.TITULO }}</td>
+              <td class="text-center">{{ remittance.CAUSA }}</td>
+              <td class="text-center">{{ remittance.SOLUCION }}</td>
+              <td style="text-align: center; vertical-align: middle; display: flex; justify-content: center; align-items: center;">                <p-button
+                  class="mr-2"
+                  (onClick)="OpenDialog('EDIT', remittance)"
+                  [rounded]="true"
+                  size="small"
+                  [text]="true"
+                >
+                  <ng-template pTemplate="icon">
+                    <i class="pi pi-file-edit bw-text-blue text-2xl"></i>
+                  </ng-template>
+                </p-button>
+                <p-button
+                  class="bw-text-blue"
+                  [rounded]="true"
+                  (onClick)="OpenDialog('DELETE', remittance)"
+                  size="small"
+                  [text]="true"
+                >
+                  <ng-template pTemplate="icon">
+                    <i class="pi pi-trash bw-text-blue text-2xl"></i>
+                  </ng-template>
+                </p-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+  

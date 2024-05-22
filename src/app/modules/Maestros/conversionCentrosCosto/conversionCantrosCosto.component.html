@@ -1,0 +1,78 @@
+<div class="w-9 mx-auto">
+  <app-view-title class="m-0 p-0"  [viewTitle]="pageTitle" [viewDescription]="viewDescription"></app-view-title>
+  <div class="d-md-flex d-sm-inline-flex justify-content-between mb-2">
+    <div class="d-flex justify-content-end mb-2">
+      <div>
+        <span class="cursor-pointer p-input-icon-right">
+          <i class="fas fa-search" (click)="Search()"></i>
+          <input placeholder="Cambiar de acuerdo al filtro" [(ngModel)]="pageInfo.keyParameter" type="text" pInputText
+            (blur)="Search()" (keyup.enter)="Search()" />
+        </span>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mb-2">
+      <p-button label="Agregar" class="bw-color-blue" icon="pi pi-plus" (onClick)="ConfirmCreateDialog()"></p-button>
+
+    </div>
+  </div>
+
+  <div class="border-round-lg border-2 border-300 mb-4 p-1">
+    <p-table [value]="paginatedAreas.result" [paginator]="true" [lazy]="true" (onLazyLoad)="LoadAreas($event)"
+      class="bg-dark" (rowsChange)="RowsChange($event)" [rows]="pageInfo.rows"
+      [totalRecords]="paginatedAreas.totalCount" [rowsPerPageOptions]="[5, 10, 20]" [loading]="loadingTable">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="text-center py-3 border-left-3 border-0">
+            Codigo conversion
+          </th>
+          <th class="text-center py-3 border-left-3 border-0">
+            Centro costo conversion
+          </th>
+          <th class="text-center py-3 border-left-3 border-0">
+            Banco de conversion
+          </th>
+          <th class="text-center py-3 border-left-3 border-0">
+            Estado
+          </th>
+          <th class="text-center py-3 border-left-3 border-0">
+            Acciones
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-areas>
+        <tr>
+          <td class="text-center">{{ areas.codigoConversion }}</td>
+          <td class="text-center">{{ areas.centroCostoConversion }}</td>
+          <td class="text-center">{{ areas.bancoConversion }}</td>
+          <td class="text-center">
+            <app-status-chip [estado]="areas.estado"></app-status-chip>
+          </td>
+
+          <td class="text-center">
+            <div class="d-flex align-items-center">
+              <p-button icon="pi pi-trash" size="large" [text]="true" severity="danger" [rounded]="true"
+                (click)="ConfirmDeleteDialog(areas)">
+              </p-button>
+              <ng-template #tooltipEliminar>
+                <div class="d-flex align-items-center">
+                  <span> Eliminar </span>
+                </div>
+              </ng-template>
+
+              <p-button icon="pi pi-file-edit" [pTooltip]="tooltipEditar" size="large" [text]="true" severity="danger"
+                [rounded]="true" (click)="ConfirmEditDialog(areas)">
+              </p-button>
+              <ng-template #tooltipEditar>
+                <div class="d-flex align-items-center">
+                  <span> Editar </span>
+                </div>
+              </ng-template>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="flex justify-content-center flex-wrap"></div>
+</div>

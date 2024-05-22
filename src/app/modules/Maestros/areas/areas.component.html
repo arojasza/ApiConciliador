@@ -1,6 +1,6 @@
 <div class="w-9 mx-auto">
-  <app-view-title class="m-0 p-0" [viewTitle]="pageTitle" [viewDescription]="viewDescription"></app-view-title>
-  <div class="d-flex justify-content-between mb-2">
+  <app-view-title class="m-0 p-0"  [viewTitle]="pageTitle" [viewDescription]="viewDescription"></app-view-title>
+  <div class="d-md-flex d-sm-inline-flex justify-content-between mb-2">
     <div class="d-flex justify-content-end mb-2">
       <div>
         <span class="cursor-pointer p-input-icon-right">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="border-round-lg border-2 border-300 mb-4 p-1">
-    <p-table [value]="paginatedAreas.result" [paginator]="true" [lazy]="true" (onLazyLoad)="LoadAreas($event)"
+    <p-table [value]="paginatedAreas.result" class="my-custom-table" [paginator]="true" [lazy]="true" (onLazyLoad)="LoadAreas($event)"
       class="bg-dark" (rowsChange)="RowsChange($event)" [rows]="pageInfo.rows"
       [totalRecords]="paginatedAreas.totalCount" [rowsPerPageOptions]="[5, 10, 20]" [loading]="loadingTable">
       <ng-template pTemplate="header">
@@ -39,9 +39,6 @@
             Estado
           </th>
           <th class="text-center py-3 border-left-3 border-0">
-            UltimaConexion
-          </th>
-          <th class="text-center py-3 border-left-3 border-0">
             Acciones
           </th>
         </tr>
@@ -54,9 +51,9 @@
 
           <td class="text-center">{{ areas.rol }}</td>
 
-          <td class="text-center">{{ areas.estado }}</td>
-
-          <td class="text-center">{{ areas.UltimaConexion }}</td>
+          <td class="text-center">
+            <app-status-chip [estado]="areas.estado"></app-status-chip>
+          </td>
 
           <td class="text-center">
             <div class="d-flex align-items-center">
